@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import './App.css'
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Container } from 'react-bootstrap'
 import ChatMasseges from './Components/ChatMessage'
 import AddMessage from './Components/AddMessage'
 

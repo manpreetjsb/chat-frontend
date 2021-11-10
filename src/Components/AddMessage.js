@@ -9,14 +9,16 @@ const AddMessage = ({ fetchMessages }) => {
     setInputValue(e.target.value)
   }
 
-  const addMessage = () => {
+  const addMessage = (e) => {
+    e.preventDefault()
     axios
       .post(baseURL, {
         message: inputValue,
-        author: 'Tom',
+        author: 'me',
       })
       .then(() => {
         fetchMessages()
+        setInputValue('')
       })
       .catch((err) => {
         console.error('Error catching for adding Message', err)
@@ -24,9 +26,9 @@ const AddMessage = ({ fetchMessages }) => {
   }
 
   return (
-    <>
-      <div className='fixed-bottom bg-info'>
-        <div className='container'>
+    <div className='fixed-bottom bg-info'>
+      <div className='container'>
+        <form onSubmit={(e) => addMessage(e)}>
           <div className='input-group m-2'>
             <input
               type='text'
@@ -38,18 +40,14 @@ const AddMessage = ({ fetchMessages }) => {
               aria-describedby='basic-addon2'
             />
             <div className='input-group-append'>
-              <button
-                className='btn btn-outline-secondary'
-                type='button'
-                onClick={addMessage}
-              >
+              <button className='btn btn-outline-secondary' type='submit'>
                 SEND
               </button>
             </div>
           </div>
-        </div>
+        </form>
       </div>
-    </>
+    </div>
   )
 }
 

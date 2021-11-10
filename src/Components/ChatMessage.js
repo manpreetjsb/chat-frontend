@@ -6,10 +6,17 @@ const ChatMessages = ({ messages }) => {
   return (
     <div className='container'>
       <div className='overflow-scroll'>
-        {messages.length > 0 &&
+        {messages &&
           messages.map((item) => {
             return (
-              <div className='card w-75 my-3' key={item._id}>
+              <div
+                className={`card w-75 my-3 ${
+                  item.author === 'me'
+                    ? 'float-end bg-light-yello'
+                    : 'float-start bg-white'
+                }`}
+                key={item._id}
+              >
                 <div className='card-body'>
                   <h6 className='card-subtitle opacity-50'>
                     user : {item.author}
@@ -17,7 +24,13 @@ const ChatMessages = ({ messages }) => {
 
                   <p className='card-text'>{item.message}</p>
                   <h6 className='card-subtitle opacity-50'>
-                    date :{new Date(item.timestamp).toLocaleDateString('en-GB')}
+                    {new Date(item.timestamp).toLocaleDateString(['en-GB'], {
+                      day: '2-digit',
+                      month: 'short',
+                      year: 'numeric',
+                      hour: '2-digit',
+                      minute: '2-digit',
+                    })}
                   </h6>
                 </div>
               </div>

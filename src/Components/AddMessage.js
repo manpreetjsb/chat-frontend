@@ -12,8 +12,8 @@ const AddMessage = ({ fetchMessages }) => {
   const addMessage = () => {
     axios
       .post(baseURL, {
-        message: 'This is a second Message.',
-        author: 'Top',
+        message: inputValue,
+        author: 'Tom',
       })
       .then(() => {
         fetchMessages()

@@ -6,9 +6,8 @@ body {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.bg-light-yello {
+  background-color: #ffffd5 !important;
 }
 
 @media (prefers-reduced-motion: no-preference) {

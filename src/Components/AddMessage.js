@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { baseURL } from '../App'
 
 const AddMessage = ({ fetchMessages }) => {
   const [inputValue, setInputValue] = useState('')
@@ -9,43 +10,46 @@ const AddMessage = ({ fetchMessages }) => {
   }
 
   const addMessage = () => {
-    console.log(inputValue)
-
     axios
       .post(baseURL, {
-        message: 'This is a first Message.',
-        author: 'test',
+        message: 'This is a second Message.',
+        author: 'Top',
       })
       .then(() => {
         fetchMessages()
       })
+      .catch((err) => {
+        console.error('Error catching for adding Message', err)
+      })
   }
 
   return (
-    <div className='fixed-bottom bg-info'>
-      <div className='container'>
-        <div className='input-group m-2'>
-          <input
-            type='text'
-            value={inputValue}
-            onChange={onChangeValue}
-            className='form-control'
-            placeholder='Message'
-            aria-label='Chat Message'
-            aria-describedby='basic-addon2'
-          />
-          <div className='input-group-append'>
-            <button
-              className='btn btn-outline-secondary'
-              type='button'
-              onClick={addMessage}
-            >
-              SEND
-            </button>
+    <>
+      <div className='fixed-bottom bg-info'>
+        <div className='container'>
+          <div className='input-group m-2'>
+            <input
+              type='text'
+              value={inputValue}
+              onChange={onChangeValue}
+              className='form-control'
+              placeholder='Message'
+              aria-label='Chat Message'
+              aria-describedby='basic-addon2'
+            />
+            <div className='input-group-append'>
+              <button
+                className='btn btn-outline-secondary'
+                type='button'
+                onClick={addMessage}
+              >
+                SEND
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

@@ -6,20 +6,20 @@ import { Container } from 'react-bootstrap'
 import ChatMasseges from './Components/ChatMessage'
 import AddMessage from './Components/AddMessage'
 
+export const baseURL =
+  'https://chatty.kubernetes.doodle-test.com/api/chatty/v1.0/?token=HBAwxg0XMMM0'
+
 const App = () => {
   const [messages, setMessages] = useState([])
-  const baseURL =
-    'https://chatty.kubernetes.doodle-test.com/api/chatty/v1.0/?token=HBAwxg0XMMM0'
 
   const fetchMessages = () => {
     axios
       .get(baseURL)
       .then((resp) => {
-        console.log(resp.data)
         setMessages(resp.data)
       })
       .catch((err) => {
-        console.log(err)
+        console.error('Error catching Messages', err)
       })
   }
 
@@ -28,14 +28,12 @@ const App = () => {
   }, [])
 
   return (
-    <Container>
+    <div>
       <div>
-        <div>
-          <ChatMasseges messages={messages} />
-          <AddMessage fetchMessages={fetchMessages} />
-        </div>
+        <ChatMasseges messages={messages} />
+        <AddMessage fetchMessages={fetchMessages} />
       </div>
-    </Container>
+    </div>
   )
 }
 
